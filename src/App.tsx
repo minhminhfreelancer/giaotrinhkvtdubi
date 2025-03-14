@@ -13,6 +13,7 @@ const AdminSignUp = lazy(() => import("./components/auth/AdminSignUp"));
 import { AuthProvider } from "../supabase/auth";
 import { Toaster } from "./components/ui/toaster";
 import { LoadingScreen } from "./components/ui/loading-spinner";
+import MobileRedirect from "./components/MobileRedirect";
 
 import AuthGuard from "./components/auth/AuthGuard";
 
@@ -88,6 +89,7 @@ function App() {
     <AuthProvider>
       <Suspense fallback={<LoadingScreen text="Loading application..." />}>
         <AppRoutes />
+        <MobileRedirect />
       </Suspense>
       <Toaster />
     </AuthProvider>

@@ -1,4 +1,4 @@
-/* Mobile-specific styles */
+/* Mobile-specific styles for native app feel */
 
 .mobile-container {
   max-width: 100%;
@@ -8,6 +8,11 @@
   background-color: #f5f5f7;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  overscroll-behavior-y: none;
 }
 
 /* Status bar styling */
@@ -24,13 +29,15 @@
   padding: 0 16px;
   align-items: center;
   font-size: 12px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 /* Mobile header styling */
 .mobile-header {
   height: 56px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #f0f0f0;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(240, 240, 240, 0.8);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -40,14 +47,16 @@
   left: 0;
   right: 0;
   z-index: 50;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 /* Mobile bottom navigation */
 .mobile-bottom-nav {
   height: 64px;
-  background-color: #ffffff;
-  border-top: 1px solid #f0f0f0;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-top: 1px solid rgba(240, 240, 240, 0.8);
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -56,58 +65,92 @@
   left: 0;
   right: 0;
   z-index: 50;
-  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.03);
   padding-bottom: env(safe-area-inset-bottom, 0px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 /* Content area */
 .mobile-content {
   padding: 64px 16px 80px; /* Top: header, Bottom: nav bar + safe area */
   min-height: calc(100vh - 144px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Mobile card styling */
 .mobile-card {
   background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   padding: 16px;
   margin-bottom: 16px;
+  transform: translateZ(0);
+  will-change: transform;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.mobile-card:active {
+  transform: scale(0.98);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.03);
 }
 
 /* Mobile button styling */
 .mobile-button {
-  border-radius: 8px;
-  padding: 12px 16px;
-  font-weight: 500;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-weight: 600;
   font-size: 16px;
   width: 100%;
   text-align: center;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
+  transform: translateZ(0);
+  will-change: transform;
+  transition:
+    transform 0.15s ease,
+    background-color 0.2s ease;
+}
+
+.mobile-button:active {
+  transform: scale(0.97);
 }
 
 /* Mobile input styling */
 .mobile-input {
-  border-radius: 8px;
-  padding: 12px;
+  border-radius: 12px;
+  padding: 14px;
   font-size: 16px;
   border: 1px solid #e0e0e0;
   width: 100%;
   margin-bottom: 16px;
   -webkit-appearance: none;
   appearance: none;
+  background-color: rgba(248, 248, 248, 0.8);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.mobile-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+  background-color: #ffffff;
 }
 
 /* Mobile tab styling */
 .mobile-tabs {
   display: flex;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgba(240, 240, 240, 0.8);
   margin-bottom: 16px;
   overflow-x: auto;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none; /* Firefox */
+  padding: 0 4px;
 }
 
 .mobile-tabs::-webkit-scrollbar {
@@ -117,11 +160,14 @@
 .mobile-tab {
   padding: 12px 16px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   color: #666;
   border-bottom: 2px solid transparent;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .mobile-tab.active {
@@ -129,15 +175,24 @@
   border-bottom-color: #3b82f6;
 }
 
+.mobile-tab:active {
+  opacity: 0.7;
+}
+
 /* Mobile list styling */
 .mobile-list-item {
   padding: 16px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgba(240, 240, 240, 0.8);
   display: flex;
   align-items: center;
   justify-content: space-between;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.2s ease;
+}
+
+.mobile-list-item:active {
+  background-color: rgba(0, 0, 0, 0.03);
 }
 
 .mobile-list-item:last-child {
@@ -156,12 +211,13 @@
   font-weight: 600;
   color: #666;
   overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 /* Mobile progress bar */
 .mobile-progress {
   height: 8px;
-  background-color: #f0f0f0;
+  background-color: rgba(240, 240, 240, 0.8);
   border-radius: 4px;
   overflow: hidden;
   margin: 8px 0;
@@ -171,7 +227,7 @@
   height: 100%;
   background-color: #3b82f6;
   border-radius: 4px;
-  transition: width 0.3s ease;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Mobile animations */
@@ -185,7 +241,11 @@
 }
 
 .mobile-fade-in {
-  animation: mobile-fade-in 0.3s ease-in-out;
+  animation: mobile-fade-in 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-fade-in {
+  animation: mobile-fade-in 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes mobile-slide-up {
@@ -200,37 +260,57 @@
 }
 
 .mobile-slide-up {
-  animation: mobile-slide-up 0.3s ease-in-out;
+  animation: mobile-slide-up 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes mobile-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.mobile-pulse {
+  animation: mobile-pulse 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Mobile typography */
 .mobile-title {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
   margin-bottom: 16px;
+  letter-spacing: -0.5px;
 }
 
 .mobile-subtitle {
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 600;
   margin-bottom: 12px;
+  letter-spacing: -0.3px;
 }
 
 .mobile-text {
   font-size: 16px;
   line-height: 1.5;
   color: #333;
+  letter-spacing: -0.2px;
 }
 
 .mobile-caption {
   font-size: 12px;
   color: #666;
+  letter-spacing: -0.1px;
 }
 
 /* Mobile utilities */
 .mobile-divider {
   height: 1px;
-  background-color: #f0f0f0;
+  background-color: rgba(240, 240, 240, 0.8);
   margin: 16px 0;
 }
 
@@ -239,11 +319,11 @@
 }
 
 .mobile-shadow {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 }
 
 .mobile-rounded {
-  border-radius: 12px;
+  border-radius: 16px;
 }
 
 /* Fix for iOS input zoom */
@@ -275,4 +355,193 @@
 
 .mobile-safe-area-bottom {
   padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Native app-like transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+
+/* Pull to refresh effect */
+.pull-to-refresh {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-100%);
+  transition: transform 0.2s;
+}
+
+.pull-to-refresh.visible {
+  transform: translateY(0);
+}
+
+.pull-indicator {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid rgba(59, 130, 246, 0.3);
+  border-top-color: #3b82f6;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Native-like toast notifications */
+.mobile-toast {
+  position: fixed;
+  bottom: 80px;
+  left: 16px;
+  right: 16px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-weight: 500;
+  text-align: center;
+  z-index: 1000;
+  transform: translateY(20px);
+  opacity: 0;
+  transition:
+    transform 0.3s,
+    opacity 0.3s;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.mobile-toast.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Native-like swipe actions */
+.swipeable-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.swipe-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  transform: translateX(100%);
+  transition: transform 0.3s;
+}
+
+.swipe-action {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  color: white;
+  font-weight: 600;
+}
+
+.swipe-action.delete {
+  background-color: #ef4444;
+}
+
+.swipe-action.archive {
+  background-color: #3b82f6;
+}
+
+/* Native-like bottom sheet */
+.bottom-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.bottom-sheet.visible {
+  transform: translateY(0);
+}
+
+.bottom-sheet-handle {
+  width: 36px;
+  height: 5px;
+  background-color: #e0e0e0;
+  border-radius: 3px;
+  margin: 10px auto;
+}
+
+/* Native-like segmented control */
+.segmented-control {
+  display: flex;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 4px;
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.segmented-option {
+  flex: 1;
+  text-align: center;
+  padding: 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s;
+}
+
+.segmented-option.active {
+  color: #000;
+}
+
+.segment-indicator {
+  position: absolute;
+  height: calc(100% - 8px);
+  top: 4px;
+  left: 4px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

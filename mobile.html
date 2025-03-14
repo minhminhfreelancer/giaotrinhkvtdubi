@@ -7,7 +7,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#3b82f6" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="format-detection" content="telephone=no" />
@@ -16,7 +16,9 @@
       content="Ứng dụng quản lý giáo trình dành cho khu vực trưởng"
     />
     <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="manifest" href="/manifest.json" />
     <link rel="apple-touch-icon" href="/favicon.ico" />
+    <link rel="apple-touch-startup-image" href="/splash.png" />
     <title>Giáo trình khu vực trưởng</title>
     <style>
       /* Initial loading styles */
@@ -27,6 +29,10 @@
           Helvetica, Arial, sans-serif;
         background-color: #f5f5f7;
         overscroll-behavior: none;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
       }
       .initial-loader {
         position: fixed;
@@ -60,6 +66,27 @@
           transform: rotate(360deg);
         }
       }
+      /* Fix for iOS input zoom */
+      @media screen and (-webkit-min-device-pixel-ratio: 0) {
+        select,
+        textarea,
+        input[type="text"],
+        input[type="password"],
+        input[type="datetime"],
+        input[type="datetime-local"],
+        input[type="date"],
+        input[type="month"],
+        input[type="time"],
+        input[type="week"],
+        input[type="number"],
+        input[type="email"],
+        input[type="url"],
+        input[type="search"],
+        input[type="tel"],
+        input[type="color"] {
+          font-size: 16px;
+        }
+      }
     </style>
   </head>
 
@@ -72,5 +99,63 @@
     </div>
     <script type="module" src="/src/mobile-entry.tsx"></script>
     <script src="https://api.tempolabs.ai/proxy-asset?url=https://storage.googleapis.com/tempo-public-assets/error-handling.js"></script>
+    <script>
+      // Register service worker for PWA support
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("/service-worker.js").then(
+            function (registration) {
+              console.log(
+                "ServiceWorker registration successful with scope: ",
+                registration.scope,
+              );
+            },
+            function (err) {
+              console.log("ServiceWorker registration failed: ", err);
+            },
+          );
+        });
+      }
+
+      // Add to home screen prompt handler
+      let deferredPrompt;
+      window.addEventListener("beforeinstallprompt", (e) => {
+        // Prevent Chrome 67 and earlier from automatically showing the prompt
+        e.preventDefault();
+        // Stash the event so it can be triggered later
+        deferredPrompt = e;
+        // Show the install button or banner
+        // You can implement this UI element elsewhere in your app
+      });
+
+      // Function to show the install prompt (can be called from a button click)
+      function showInstallPrompt() {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === "accepted") {
+              console.log("User accepted the install prompt");
+            } else {
+              console.log("User dismissed the install prompt");
+            }
+            deferredPrompt = null;
+          });
+        }
+      }
+
+      // Prevent pull-to-refresh behavior
+      document.addEventListener(
+        "touchmove",
+        function (e) {
+          if (
+            document.documentElement.scrollTop === 0 &&
+            e.touches[0].clientY > 0
+          ) {
+            e.preventDefault();
+          }
+        },
+        { passive: false },
+      );
+    </script>
   </body>
 </html>
