@@ -43,7 +43,7 @@ const defaultNavItems: NavItem[] = [
 ];
 
 const defaultBottomItems: NavItem[] = [
-  { icon: <Settings size={20} />, label: "Cài đặt", href: "/settings" },
+  { icon: <Settings size={20} />, label: "Cài đặt", href: "/account" },
   { icon: <HelpCircle size={20} />, label: "Trợ giúp", href: "/help" },
 ];
 
@@ -63,7 +63,7 @@ const Sidebar = ({
       <div className="p-6">
         <h2 className="text-xl font-semibold mb-2 text-gray-900">Dự án</h2>
         <p className="text-sm text-gray-500">
-          Quản lý dự án và nhiệm vụ của bạn
+          Quản lý dự án và nhiệm vụ của anh chị em
         </p>
       </div>
 

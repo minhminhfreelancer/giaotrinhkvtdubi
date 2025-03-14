@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
@@ -52,7 +53,7 @@ export default function Chapter1({
             value={evangelismGoal}
             onChange={(e) => setEvangelismGoal(e.target.value)}
             className="min-h-[100px] border-gray-300 rounded-lg"
-            placeholder="Nhập mục tiêu truyền đạo của bạn..."
+            placeholder="Nhập mục tiêu truyền đạo của anh chị em..."
           />
         </div>
 
@@ -65,7 +66,7 @@ export default function Chapter1({
             value={evangelismPlan}
             onChange={(e) => setEvangelismPlan(e.target.value)}
             className="min-h-[100px] border-gray-300 rounded-lg"
-            placeholder="Nhập phương án truyền đạo của bạn..."
+            placeholder="Nhập phương án truyền đạo của anh chị em..."
           />
         </div>
 
@@ -78,7 +79,7 @@ export default function Chapter1({
             value={educationGoal}
             onChange={(e) => setEducationGoal(e.target.value)}
             className="min-h-[100px] border-gray-300 rounded-lg"
-            placeholder="Nhập mục tiêu giáo dục của bạn..."
+            placeholder="Nhập mục tiêu giáo dục của anh chị em..."
           />
         </div>
 
@@ -91,7 +92,7 @@ export default function Chapter1({
             value={educationPlan}
             onChange={(e) => setEducationPlan(e.target.value)}
             className="min-h-[100px] border-gray-300 rounded-lg"
-            placeholder="Nhập phương án giáo dục của bạn..."
+            placeholder="Nhập phương án giáo dục của anh chị em..."
           />
         </div>
 
@@ -104,8 +105,13 @@ export default function Chapter1({
             value={managementPlan}
             onChange={(e) => setManagementPlan(e.target.value)}
             className="min-h-[100px] border-gray-300 rounded-lg"
-            placeholder="Nhập phương án quản lý khu vực đảm nhiệm của bạn..."
+            placeholder="Nhập phương án quản lý khu vực đảm nhiệm của anh chị em..."
           />
+        </div>
+        <div className="flex justify-end mt-6">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+            Lưu
+          </Button>
         </div>
       </CardContent>
     </Card>

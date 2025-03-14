@@ -117,7 +117,7 @@ export default function CurriculumPage() {
             Giáo Trình Khu Vực Trưởng Dự Bị
           </h1>
           <p className="text-gray-600">
-            Quản lý và theo dõi tiến độ học tập của bạn
+            Quản lý và theo dõi tiến độ học tập của anh chị em
           </p>
         </div>
 

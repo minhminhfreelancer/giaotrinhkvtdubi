@@ -49,7 +49,8 @@ export default function SignUpForm() {
 
       toast({
         title: "Tạo tài khoản thành công",
-        description: "Vui lòng kiểm tra email của bạn để xác minh tài khoản.",
+        description:
+          "Vui lòng kiểm tra email của anh chị em để xác minh tài khoản.",
         duration: 5000,
       });
       // Navigate to login page
@@ -126,7 +127,7 @@ export default function SignUpForm() {
           </Button>
 
           <div className="text-xs text-center text-gray-500 mt-6">
-            Bằng cách tạo tài khoản, bạn đồng ý với{" "}
+            Bằng cách tạo tài khoản, anh chị em đồng ý với{" "}
             <Link to="/" className="text-blue-600 hover:underline">
               Điều khoản dịch vụ
             </Link>{" "}

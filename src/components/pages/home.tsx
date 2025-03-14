@@ -159,7 +159,7 @@ export default function LandingPage() {
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Nền tảng của chúng tôi cung cấp tất cả các công cụ cần thiết để
                 các nhà lãnh đạo tôn giáo phát triển trong sứ mệnh và phát triển
-                cá nhân.
+                cá nhân của anh chị em.
               </p>
             </div>
 
@@ -229,7 +229,7 @@ export default function LandingPage() {
                 </h2>
                 <p className="text-xl text-gray-600 mb-6">
                   Truy cập kho tài liệu giảng dạy phong phú, tài nguyên kinh
-                  thánh và nội dung video để nâng cao mục vụ của bạn.
+                  thánh và nội dung video để nâng cao mục vụ của anh chị em.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -292,7 +292,7 @@ export default function LandingPage() {
                     </div>
                     <span className="text-gray-700">
                       Tài nguyên video với khả năng tải lên để chia sẻ nội dung
-                      của riêng bạn
+                      của riêng anh chị em
                     </span>
                   </li>
                 </ul>
@@ -349,11 +349,11 @@ export default function LandingPage() {
         <section className="py-16 bg-blue-600 text-white">
           <div className="max-w-[1200px] mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Sẵn Sàng Nâng Cao Mục Vụ Của Bạn?
+              Sẵn Sàng Nâng Cao Mục Vụ Của Anh Chị Em?
             </h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto">
               Tham gia cùng hàng nghìn nhà lãnh đạo tôn giáo đang cải thiện hiệu
-              quả giảng dạy và mục vụ của họ.
+              quả giảng dạy và mục vụ của anh chị em.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/signup">

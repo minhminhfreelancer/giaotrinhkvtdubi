@@ -1,22 +1,35 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface SelfAssessment {
   category: string;
   content: string;
   score: string;
+  week1?: string;
+  week2?: string;
+  week3?: string;
+  week4?: string;
 }
 
 interface Chapter3Props {
   assessments: SelfAssessment[];
-  handleAssessmentChange: (index: number, value: string) => void;
+  handleAssessmentChange: (index: number, value: string, week?: string) => void;
 }
 
 export default function Chapter3({
   assessments,
   handleAssessmentChange,
 }: Chapter3Props) {
+  const grades = ["A", "B", "C", "D", "F"];
+
   return (
     <Card>
       <CardHeader>
@@ -44,8 +57,17 @@ export default function Chapter3({
                 <th className="border border-gray-300 px-4 py-2 text-left">
                   NỘI DUNG KIỂM ĐIỂM
                 </th>
-                <th className="border border-gray-300 px-4 py-2 text-center w-24">
-                  ĐÁNH GIÁ (A,B,C,D,F)
+                <th className="border border-gray-300 px-4 py-2 text-center">
+                  Tuần 1
+                </th>
+                <th className="border border-gray-300 px-4 py-2 text-center">
+                  Tuần 2
+                </th>
+                <th className="border border-gray-300 px-4 py-2 text-center">
+                  Tuần 3
+                </th>
+                <th className="border border-gray-300 px-4 py-2 text-center">
+                  Tuần 4
                 </th>
               </tr>
             </thead>
@@ -71,20 +93,94 @@ export default function Chapter3({
                     {item.content}
                   </td>
                   <td className="border border-gray-300 px-2 py-2 text-center">
-                    <Input
-                      value={item.score}
-                      onChange={(e) =>
-                        handleAssessmentChange(index, e.target.value)
+                    <Select
+                      value={item.week1 || "none"}
+                      onValueChange={(value) =>
+                        handleAssessmentChange(index, value, "week1")
                       }
-                      className="w-16 mx-auto text-center"
-                      maxLength={1}
-                      placeholder="A-F"
-                    />
+                    >
+                      <SelectTrigger className="w-16 h-8">
+                        <SelectValue placeholder="-" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="none">-</SelectItem>
+                        {grades.map((grade) => (
+                          <SelectItem key={grade} value={grade}>
+                            {grade}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </td>
+                  <td className="border border-gray-300 px-2 py-2 text-center">
+                    <Select
+                      value={item.week2 || "none"}
+                      onValueChange={(value) =>
+                        handleAssessmentChange(index, value, "week2")
+                      }
+                    >
+                      <SelectTrigger className="w-16 h-8">
+                        <SelectValue placeholder="-" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="none">-</SelectItem>
+                        {grades.map((grade) => (
+                          <SelectItem key={grade} value={grade}>
+                            {grade}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </td>
+                  <td className="border border-gray-300 px-2 py-2 text-center">
+                    <Select
+                      value={item.week3 || "none"}
+                      onValueChange={(value) =>
+                        handleAssessmentChange(index, value, "week3")
+                      }
+                    >
+                      <SelectTrigger className="w-16 h-8">
+                        <SelectValue placeholder="-" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="none">-</SelectItem>
+                        {grades.map((grade) => (
+                          <SelectItem key={grade} value={grade}>
+                            {grade}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </td>
+                  <td className="border border-gray-300 px-2 py-2 text-center">
+                    <Select
+                      value={item.week4 || "none"}
+                      onValueChange={(value) =>
+                        handleAssessmentChange(index, value, "week4")
+                      }
+                    >
+                      <SelectTrigger className="w-16 h-8">
+                        <SelectValue placeholder="-" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="none">-</SelectItem>
+                        {grades.map((grade) => (
+                          <SelectItem key={grade} value={grade}>
+                            {grade}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+        </div>
+        <div className="flex justify-end mt-6">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+            Lưu
+          </Button>
         </div>
       </CardContent>
     </Card>

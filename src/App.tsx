@@ -7,6 +7,7 @@ import Dashboard from "./components/pages/dashboard";
 import Progress from "./components/pages/progress";
 import Success from "./components/pages/success";
 import Curriculum from "./components/pages/curriculum";
+import Account from "./components/pages/account";
 const AdminSignUp = lazy(() => import("./components/auth/AdminSignUp"));
 import { AuthProvider } from "../supabase/auth";
 import { Toaster } from "./components/ui/toaster";
@@ -52,6 +53,14 @@ function AppRoutes() {
         element={
           <PrivateRoute>
             <Curriculum />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/account"
+        element={
+          <PrivateRoute>
+            <Account />
           </PrivateRoute>
         }
       />

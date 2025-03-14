@@ -1,17 +1,20 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 interface WeeklySchedule {
   day: string;
+  wakeUpTime: string;
   morning: string;
   morningTime: string;
   afternoon: string;
   afternoonTime: string;
   evening: string;
   eveningTime: string;
+  bedTime: string;
 }
 
 interface Chapter2Props {
@@ -105,6 +108,11 @@ export default function Chapter2({
             />
           </TabsContent>
         </Tabs>
+        <div className="flex justify-end mt-6">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+            Lưu
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );
@@ -131,12 +139,46 @@ function WeekSchedule({
       {weekData.map((day, index) => (
         <div key={index} className="border border-gray-200 rounded-lg p-4">
           <h3 className="font-medium text-gray-900 mb-4">{day.day}</h3>
-          <div className="grid grid-cols-3 gap-4">
-            <div className="space-y-3">
-              <Label className="text-sm font-medium">Sáng</Label>
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-1/2">
+              <Label className="text-sm font-medium mb-2">Giờ thức dậy</Label>
+              <Input
+                type="time"
+                value={day.wakeUpTime}
+                onChange={(e) =>
+                  handleWeeklyScheduleChange(
+                    weekKey,
+                    index,
+                    "wakeUpTime",
+                    e.target.value,
+                  )
+                }
+                className="w-full"
+              />
+            </div>
+            <div className="w-1/2">
+              <Label className="text-sm font-medium mb-2">Giờ đi ngủ</Label>
+              <Input
+                type="time"
+                value={day.bedTime}
+                onChange={(e) =>
+                  handleWeeklyScheduleChange(
+                    weekKey,
+                    index,
+                    "bedTime",
+                    e.target.value,
+                  )
+                }
+                className="w-full"
+              />
+            </div>
+          </div>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label className="text-sm font-medium">Sáng (AM)</Label>
               <div className="flex gap-2">
                 <Input
-                  placeholder="Thời gian"
+                  type="time"
                   value={day.morningTime}
                   onChange={(e) =>
                     handleWeeklyScheduleChange(
@@ -146,7 +188,7 @@ function WeekSchedule({
                       e.target.value,
                     )
                   }
-                  className="w-1/3"
+                  className="w-1/4"
                 />
                 <Input
                   placeholder="Hoạt động"
@@ -159,15 +201,15 @@ function WeekSchedule({
                       e.target.value,
                     )
                   }
-                  className="w-2/3"
+                  className="w-3/4"
                 />
               </div>
             </div>
-            <div className="space-y-3">
-              <Label className="text-sm font-medium">Chiều</Label>
+            <div className="space-y-2">
+              <Label className="text-sm font-medium">Chiều (PM)</Label>
               <div className="flex gap-2">
                 <Input
-                  placeholder="Thời gian"
+                  type="time"
                   value={day.afternoonTime}
                   onChange={(e) =>
                     handleWeeklyScheduleChange(
@@ -177,7 +219,7 @@ function WeekSchedule({
                       e.target.value,
                     )
                   }
-                  className="w-1/3"
+                  className="w-1/4"
                 />
                 <Input
                   placeholder="Hoạt động"
@@ -190,15 +232,15 @@ function WeekSchedule({
                       e.target.value,
                     )
                   }
-                  className="w-2/3"
+                  className="w-3/4"
                 />
               </div>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-2">
               <Label className="text-sm font-medium">Tối</Label>
               <div className="flex gap-2">
                 <Input
-                  placeholder="Thời gian"
+                  type="time"
                   value={day.eveningTime}
                   onChange={(e) =>
                     handleWeeklyScheduleChange(
@@ -208,7 +250,7 @@ function WeekSchedule({
                       e.target.value,
                     )
                   }
-                  className="w-1/3"
+                  className="w-1/4"
                 />
                 <Input
                   placeholder="Hoạt động"
@@ -221,7 +263,7 @@ function WeekSchedule({
                       e.target.value,
                     )
                   }
-                  className="w-2/3"
+                  className="w-3/4"
                 />
               </div>
             </div>

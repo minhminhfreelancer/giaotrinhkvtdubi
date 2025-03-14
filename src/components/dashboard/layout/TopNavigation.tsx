@@ -129,11 +129,17 @@ const TopNavigation = ({
               )}
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="cursor-pointer">
+            <DropdownMenuItem
+              className="cursor-pointer"
+              onSelect={() => (window.location.href = "/account")}
+            >
               <User className="mr-2 h-4 w-4" />
               Hồ sơ
             </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">
+            <DropdownMenuItem
+              className="cursor-pointer"
+              onSelect={() => (window.location.href = "/account")}
+            >
               <Settings className="mr-2 h-4 w-4" />
               Cài đặt
             </DropdownMenuItem>

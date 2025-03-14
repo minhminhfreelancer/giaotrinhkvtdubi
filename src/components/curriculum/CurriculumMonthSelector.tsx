@@ -64,7 +64,7 @@ export default function CurriculumMonthSelector({
     if (!isMonthAvailable(month)) {
       toast({
         title: "Tháng này chưa được mở khóa",
-        description: "Bạn cần hoàn thành tháng trước đó trước.",
+        description: "Anh chị em cần hoàn thành tháng trước đó trước.",
         variant: "destructive",
       });
       return;

@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 // Helper functions to get content based on month
@@ -239,6 +240,11 @@ export default function Chapter5({ month }: Chapter5Props) {
               </tbody>
             </table>
           </div>
+        </div>
+        <div className="flex justify-end mt-6">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+            Lưu
+          </Button>
         </div>
       </CardContent>
     </Card>

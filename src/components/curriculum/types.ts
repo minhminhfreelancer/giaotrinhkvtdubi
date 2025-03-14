@@ -1,17 +1,23 @@
 export interface WeeklySchedule {
   day: string;
+  wakeUpTime: string;
   morning: string;
   morningTime: string;
   afternoon: string;
   afternoonTime: string;
   evening: string;
   eveningTime: string;
+  bedTime: string;
 }
 
 export interface SelfAssessment {
   category: string;
   content: string;
   score: string;
+  week1?: string;
+  week2?: string;
+  week3?: string;
+  week4?: string;
 }
 
 export interface CurriculumFormData {

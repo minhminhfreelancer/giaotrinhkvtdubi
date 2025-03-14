@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -184,7 +185,7 @@ export default function Chapter4({
                 value={truthBookReflection1}
                 onChange={(e) => setTruthBookReflection1(e.target.value)}
                 className="min-h-[100px] border-gray-300 rounded-lg"
-                placeholder="Nhập cảm nhận của bạn..."
+                placeholder="Nhập cảm nhận của anh chị em..."
               />
             </div>
             <div className="space-y-2">
@@ -195,7 +196,7 @@ export default function Chapter4({
                 value={truthBookReflection2}
                 onChange={(e) => setTruthBookReflection2(e.target.value)}
                 className="min-h-[100px] border-gray-300 rounded-lg"
-                placeholder="Nhập cảm nhận của bạn..."
+                placeholder="Nhập cảm nhận của anh chị em..."
               />
             </div>
             <div className="space-y-2">
@@ -206,7 +207,7 @@ export default function Chapter4({
                 value={truthBookReflection3}
                 onChange={(e) => setTruthBookReflection3(e.target.value)}
                 className="min-h-[100px] border-gray-300 rounded-lg"
-                placeholder="Nhập cảm nhận của bạn..."
+                placeholder="Nhập cảm nhận của anh chị em..."
               />
             </div>
             <div className="space-y-2">
@@ -217,10 +218,15 @@ export default function Chapter4({
                 value={truthBookReflection4}
                 onChange={(e) => setTruthBookReflection4(e.target.value)}
                 className="min-h-[100px] border-gray-300 rounded-lg"
-                placeholder="Nhập cảm nhận của bạn..."
+                placeholder="Nhập cảm nhận của anh chị em..."
               />
             </div>
           </div>
+        </div>
+        <div className="flex justify-end mt-6">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+            Lưu
+          </Button>
         </div>
       </CardContent>
     </Card>

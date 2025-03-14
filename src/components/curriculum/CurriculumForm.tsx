@@ -39,12 +39,14 @@ export default function CurriculumForm({ month = 1 }: CurriculumFormProps) {
           "Thứ Sáu",
           "Thứ Bảy",
         ][i],
+        wakeUpTime: "",
         morning: "",
         morningTime: "",
         afternoon: "",
         afternoonTime: "",
         evening: "",
         eveningTime: "",
+        bedTime: "",
       })),
       week2: Array.from({ length: 7 }, (_, i) => ({
         day: [
@@ -56,12 +58,14 @@ export default function CurriculumForm({ month = 1 }: CurriculumFormProps) {
           "Thứ Sáu",
           "Thứ Bảy",
         ][i],
+        wakeUpTime: "",
         morning: "",
         morningTime: "",
         afternoon: "",
         afternoonTime: "",
         evening: "",
         eveningTime: "",
+        bedTime: "",
       })),
       week3: Array.from({ length: 7 }, (_, i) => ({
         day: [
@@ -73,12 +77,14 @@ export default function CurriculumForm({ month = 1 }: CurriculumFormProps) {
           "Thứ Sáu",
           "Thứ Bảy",
         ][i],
+        wakeUpTime: "",
         morning: "",
         morningTime: "",
         afternoon: "",
         afternoonTime: "",
         evening: "",
         eveningTime: "",
+        bedTime: "",
       })),
       week4: Array.from({ length: 7 }, (_, i) => ({
         day: [
@@ -90,12 +96,14 @@ export default function CurriculumForm({ month = 1 }: CurriculumFormProps) {
           "Thứ Sáu",
           "Thứ Bảy",
         ][i],
+        wakeUpTime: "",
         morning: "",
         morningTime: "",
         afternoon: "",
         afternoonTime: "",
         evening: "",
         eveningTime: "",
+        bedTime: "",
       })),
     },
     assessments: [
@@ -226,7 +234,7 @@ export default function CurriculumForm({ month = 1 }: CurriculumFormProps) {
     if (!user) {
       toast({
         title: "Lỗi",
-        description: "Bạn cần đăng nhập để lưu dữ liệu",
+        description: "Anh chị em cần đăng nhập để lưu dữ liệu",
         variant: "destructive",
       });
       return;
@@ -309,12 +317,23 @@ export default function CurriculumForm({ month = 1 }: CurriculumFormProps) {
     }));
   };
 
-  const handleAssessmentChange = (index: number, value: string) => {
+  const handleAssessmentChange = (
+    index: number,
+    value: string,
+    week?: string,
+  ) => {
     setFormData((prev) => ({
       ...prev,
-      assessments: prev.assessments.map((assessment, i) =>
-        i === index ? { ...assessment, score: value } : assessment,
-      ),
+      assessments: prev.assessments.map((assessment, i) => {
+        if (i === index) {
+          if (week) {
+            return { ...assessment, [week]: value };
+          } else {
+            return { ...assessment, score: value };
+          }
+        }
+        return assessment;
+      }),
     }));
   };
 
