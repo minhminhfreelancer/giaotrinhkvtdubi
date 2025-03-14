@@ -1,0 +1,236 @@
+/* Mobile-specific styles */
+
+.mobile-container {
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  background-color: #f5f5f7;
+}
+
+/* Status bar styling */
+.mobile-status-bar {
+  height: 20px;
+  background-color: #ffffff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px;
+  align-items: center;
+  font-size: 12px;
+}
+
+/* Mobile header styling */
+.mobile-header {
+  height: 56px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  position: fixed;
+  top: 20px; /* Below status bar */
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
+
+/* Mobile bottom navigation */
+.mobile-bottom-nav {
+  height: 64px;
+  background-color: #ffffff;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
+
+/* Content area */
+.mobile-content {
+  padding: 76px 16px 64px; /* Top: header + status bar, Bottom: nav bar */
+  min-height: calc(100vh - 140px);
+}
+
+/* Mobile card styling */
+.mobile-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+/* Mobile button styling */
+.mobile-button {
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-weight: 500;
+  font-size: 14px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Mobile input styling */
+.mobile-input {
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #e0e0e0;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+/* Mobile tab styling */
+.mobile-tabs {
+  display: flex;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-tab {
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  border-bottom: 2px solid transparent;
+}
+
+.mobile-tab.active {
+  color: #3b82f6;
+  border-bottom-color: #3b82f6;
+}
+
+/* Mobile list styling */
+.mobile-list-item {
+  padding: 16px;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobile-list-item:last-child {
+  border-bottom: none;
+}
+
+/* Mobile avatar styling */
+.mobile-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #666;
+}
+
+/* Mobile progress bar */
+.mobile-progress {
+  height: 8px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+
+.mobile-progress-bar {
+  height: 100%;
+  background-color: #3b82f6;
+  border-radius: 4px;
+}
+
+/* Mobile animations */
+@keyframes mobile-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.mobile-fade-in {
+  animation: mobile-fade-in 0.3s ease-in-out;
+}
+
+@keyframes mobile-slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.mobile-slide-up {
+  animation: mobile-slide-up 0.3s ease-in-out;
+}
+
+/* Mobile typography */
+.mobile-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.mobile-subtitle {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.mobile-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.mobile-caption {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Mobile utilities */
+.mobile-divider {
+  height: 1px;
+  background-color: #f0f0f0;
+  margin: 16px 0;
+}
+
+.mobile-spacer {
+  height: 16px;
+}
+
+.mobile-shadow {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.mobile-rounded {
+  border-radius: 12px;
+}
+
+/* Mobile safe area (for notched phones) */
+.mobile-safe-area-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.mobile-safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}

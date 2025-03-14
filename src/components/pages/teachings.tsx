@@ -148,7 +148,8 @@ export default function Teachings() {
                 {randomTeaching && (
                   <div className="mt-8 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-100 dark:border-purple-800">
                     <p className="text-gray-700 dark:text-gray-300 italic text-center text-lg">
-                      "{randomTeaching.content}"
+                      "Giáo huấn thứ {randomTeaching.id} của Mẹ:{" "}
+                      {randomTeaching.content}"
                     </p>
                     <div className="mt-4 text-center">
                       <a
@@ -187,7 +188,7 @@ export default function Teachings() {
                     className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 border border-purple-100 dark:border-purple-900 hover:shadow-md transition-shadow"
                   >
                     <h3 className="font-semibold text-purple-700 dark:text-purple-300 mb-2 text-lg">
-                      Giáo huấn thứ {teaching.id} trong Giáo huấn của Mẹ
+                      Giáo huấn thứ {teaching.id} của Mẹ
                     </h3>
                     <p className="text-gray-700 dark:text-gray-300 italic mb-3">
                       "{teaching.content}"
