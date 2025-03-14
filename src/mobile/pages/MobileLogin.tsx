@@ -4,26 +4,33 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useNavigate, Link } from "react-router-dom";
+import { LogIn } from "lucide-react";
 
 export default function MobileLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const { signIn } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    setError("");
+
     try {
       await signIn(email, password);
       navigate("/dashboard");
     } catch (error) {
       setError("Email hoặc mật khẩu không hợp lệ");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-white text-black flex flex-col">
+    <div className="min-h-screen bg-white text-black flex flex-col mobile-safe-area-top mobile-safe-area-bottom">
       <div className="flex-1 flex flex-col justify-center px-6 py-12">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-semibold tracking-tight">
@@ -51,6 +58,8 @@ export default function MobileLogin() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 className="h-12 rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                autoComplete="email"
+                disabled={loading}
               />
             </div>
             <div className="space-y-2">
@@ -63,7 +72,7 @@ export default function MobileLogin() {
                 </Label>
                 <Link
                   to="/forgot-password"
-                  className="text-sm font-medium text-blue-600 hover:text-blue-500"
+                  className="text-sm font-medium text-blue-600 active:text-blue-800"
                 >
                   Quên mật khẩu?
                 </Link>
@@ -76,21 +85,38 @@ export default function MobileLogin() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 className="h-12 rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                autoComplete="current-password"
+                disabled={loading}
               />
             </div>
-            {error && <p className="text-sm text-red-500">{error}</p>}
+            {error && (
+              <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-sm text-red-600 font-medium">{error}</p>
+              </div>
+            )}
             <Button
               type="submit"
-              className="w-full h-12 rounded-full bg-black text-white hover:bg-gray-800 text-sm font-medium"
+              className="w-full h-12 rounded-full bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800 text-base font-medium flex items-center justify-center gap-2"
+              disabled={loading}
             >
-              Đăng nhập
+              {loading ? (
+                <>
+                  <div className="h-4 w-4 rounded-full border-2 border-white border-t-transparent animate-spin"></div>
+                  Đang đăng nhập...
+                </>
+              ) : (
+                <>
+                  <LogIn className="h-5 w-5" />
+                  Đăng nhập
+                </>
+              )}
             </Button>
 
             <div className="text-sm text-center text-gray-600 mt-6">
               Chưa có tài khoản?{" "}
               <Link
                 to="/signup"
-                className="text-blue-600 hover:underline font-medium"
+                className="text-blue-600 active:text-blue-800 font-medium"
               >
                 Đăng ký
               </Link>

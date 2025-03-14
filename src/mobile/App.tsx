@@ -17,18 +17,51 @@ import MobileAuthGuard from "./components/MobileAuthGuard";
 function MobileApp() {
   // Add viewport meta tag for mobile
   useEffect(() => {
+    // Set viewport meta tag
     const viewportMeta = document.createElement("meta");
     viewportMeta.name = "viewport";
     viewportMeta.content =
       "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
     document.head.appendChild(viewportMeta);
 
+    // Add theme-color meta tag for mobile browser UI
+    const themeColorMeta = document.createElement("meta");
+    themeColorMeta.name = "theme-color";
+    themeColorMeta.content = "#ffffff";
+    document.head.appendChild(themeColorMeta);
+
+    // Add apple-mobile-web-app-capable meta tag
+    const appleMobileWebAppCapable = document.createElement("meta");
+    appleMobileWebAppCapable.name = "apple-mobile-web-app-capable";
+    appleMobileWebAppCapable.content = "yes";
+    document.head.appendChild(appleMobileWebAppCapable);
+
+    // Add apple-mobile-web-app-status-bar-style meta tag
+    const appleMobileWebAppStatusBarStyle = document.createElement("meta");
+    appleMobileWebAppStatusBarStyle.name =
+      "apple-mobile-web-app-status-bar-style";
+    appleMobileWebAppStatusBarStyle.content = "default";
+    document.head.appendChild(appleMobileWebAppStatusBarStyle);
+
     // Add mobile-specific styles
     document.body.classList.add("mobile-app");
 
+    // Prevent bounce effect on iOS
+    document.body.style.overscrollBehavior = "none";
+
+    // Prevent text selection
+    document.body.style.webkitUserSelect = "none";
+    document.body.style.userSelect = "none";
+
     return () => {
       document.head.removeChild(viewportMeta);
+      document.head.removeChild(themeColorMeta);
+      document.head.removeChild(appleMobileWebAppCapable);
+      document.head.removeChild(appleMobileWebAppStatusBarStyle);
       document.body.classList.remove("mobile-app");
+      document.body.style.overscrollBehavior = "";
+      document.body.style.webkitUserSelect = "";
+      document.body.style.userSelect = "";
     };
   }, []);
 
@@ -37,7 +70,7 @@ function MobileApp() {
       <div className="mobile-container">
         <BrowserRouter basename="/mobile">
           <Routes>
-            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/login" element={<MobileLogin />} />
             <Route path="/signup" element={<MobileSignUp />} />
             <Route
@@ -80,7 +113,7 @@ function MobileApp() {
                 </MobileAuthGuard>
               }
             />
-            <Route path="*" element={<Navigate to="/login" />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
         </BrowserRouter>
         <Toaster />
