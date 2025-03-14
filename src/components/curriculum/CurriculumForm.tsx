@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
 import { supabase } from "../../../supabase/supabase";
 import { useAuth } from "../../../supabase/auth";
 import { useToast } from "@/components/ui/use-toast";
@@ -345,44 +346,53 @@ export default function CurriculumForm({ month = 1 }: CurriculumFormProps) {
         onValueChange={setActiveTab}
         className="w-full"
       >
-        <TabsList className="grid grid-cols-3 md:grid-cols-6 w-full bg-gray-100 rounded-lg p-1">
-          <TabsTrigger
-            value="chapter1"
-            className="rounded-md py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+        <div className="flex justify-between items-center mb-4">
+          <TabsList className="grid grid-cols-3 md:grid-cols-6 w-full bg-gray-100 rounded-lg p-1">
+            <TabsTrigger
+              value="chapter1"
+              className="rounded-md py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+            >
+              Chương 1
+            </TabsTrigger>
+            <TabsTrigger
+              value="chapter2"
+              className="rounded-md py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+            >
+              Chương 2
+            </TabsTrigger>
+            <TabsTrigger
+              value="chapter3"
+              className="rounded-md py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+            >
+              Chương 3
+            </TabsTrigger>
+            <TabsTrigger
+              value="chapter4"
+              className="rounded-md py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+            >
+              Chương 4
+            </TabsTrigger>
+            <TabsTrigger
+              value="chapter5"
+              className="rounded-md py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+            >
+              Chương 5
+            </TabsTrigger>
+            <TabsTrigger
+              value="chapter6"
+              className="rounded-md py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+            >
+              Chương 6
+            </TabsTrigger>
+          </TabsList>
+          <Button
+            onClick={saveCurriculumData}
+            className="ml-4 bg-blue-600 hover:bg-blue-700 text-white"
+            disabled={loading}
           >
-            Chương 1
-          </TabsTrigger>
-          <TabsTrigger
-            value="chapter2"
-            className="rounded-md py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm"
-          >
-            Chương 2
-          </TabsTrigger>
-          <TabsTrigger
-            value="chapter3"
-            className="rounded-md py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm"
-          >
-            Chương 3
-          </TabsTrigger>
-          <TabsTrigger
-            value="chapter4"
-            className="rounded-md py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm"
-          >
-            Chương 4
-          </TabsTrigger>
-          <TabsTrigger
-            value="chapter5"
-            className="rounded-md py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm"
-          >
-            Chương 5
-          </TabsTrigger>
-          <TabsTrigger
-            value="chapter6"
-            className="rounded-md py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm"
-          >
-            Chương 6
-          </TabsTrigger>
-        </TabsList>
+            {loading ? "Đang lưu..." : "Lưu tất cả"}
+          </Button>
+        </div>
 
         {/* Chương 1: Truyền Đạo Học */}
         <TabsContent value="chapter1" className="mt-6">

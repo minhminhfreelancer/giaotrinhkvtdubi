@@ -241,11 +241,7 @@ export default function Chapter5({ month }: Chapter5Props) {
             </table>
           </div>
         </div>
-        <div className="flex justify-end mt-6">
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-            Lưu
-          </Button>
-        </div>
+        {/* Save button removed - using main save button instead */}
       </CardContent>
     </Card>
   );
