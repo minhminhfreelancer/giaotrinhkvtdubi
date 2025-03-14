@@ -282,7 +282,7 @@ export default function CurriculumPage() {
 
   return (
     <div className="container mx-auto p-6 space-y-6">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 bg-white/50 backdrop-blur-sm p-4 rounded-xl border border-indigo-100 shadow-sm">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">
             Giáo Trình Khu Vực Trưởng Dự Bị
@@ -298,7 +298,7 @@ export default function CurriculumPage() {
               // Run validation without marking as complete
               await validateCurriculumData();
             }}
-            className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-4 py-2 flex items-center gap-2"
+            className="bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white rounded-lg px-4 py-2 flex items-center gap-2 shadow-md hover:shadow-lg transition-all duration-300"
           >
             <AlertCircle className="h-4 w-4" />
             Kiểm tra hoàn thành
@@ -308,7 +308,7 @@ export default function CurriculumPage() {
             <Button
               onClick={handleMarkAsComplete}
               disabled={isSubmitting}
-              className="bg-green-600 hover:bg-green-700 text-white rounded-lg px-4 py-2 flex items-center gap-2"
+              className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white rounded-lg px-4 py-2 flex items-center gap-2 shadow-md hover:shadow-lg transition-all duration-300"
             >
               <CheckCircle className="h-4 w-4" />
               {isSubmitting ? "Đang xử lý..." : "Đánh dấu hoàn thành"}
@@ -327,7 +327,7 @@ export default function CurriculumPage() {
         onSelectMonth={setSelectedMonth}
       />
 
-      <Card className="bg-white/90 backdrop-blur-sm border border-gray-100 rounded-xl shadow-sm overflow-hidden">
+      <Card className="bg-white/80 backdrop-blur-sm border border-indigo-100 rounded-xl shadow-sm overflow-hidden">
         <CardHeader>
           <CardTitle className="text-xl font-semibold text-gray-900">
             Giáo Trình Tháng Thứ {selectedMonth}

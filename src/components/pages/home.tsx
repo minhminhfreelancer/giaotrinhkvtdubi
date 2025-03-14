@@ -110,7 +110,7 @@ export default function LandingPage() {
 
       <main className="pt-16">
         {/* Hero section */}
-        <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
+        <section className="py-20 bg-gradient-to-b from-indigo-100 via-purple-50 to-white">
           <div className="max-w-[1200px] mx-auto px-4">
             <div className="flex flex-col md:flex-row items-center">
               <div className="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
@@ -124,14 +124,14 @@ export default function LandingPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                   <Link to="/signup">
-                    <Button className="w-full sm:w-auto rounded-lg bg-blue-600 text-white hover:bg-blue-700 px-6 py-3 text-base font-medium">
+                    <Button className="w-full sm:w-auto rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 text-white hover:from-violet-700 hover:to-indigo-700 px-6 py-3 text-base font-medium shadow-lg hover:shadow-xl transition-all duration-300">
                       Bắt Đầu
                     </Button>
                   </Link>
                   <Link to="/login">
                     <Button
                       variant="outline"
-                      className="w-full sm:w-auto rounded-lg border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 text-base font-medium"
+                      className="w-full sm:w-auto rounded-lg border-indigo-500 text-indigo-600 hover:bg-indigo-50 px-6 py-3 text-base font-medium backdrop-blur-sm"
                     >
                       Đăng Nhập
                     </Button>
@@ -140,9 +140,9 @@ export default function LandingPage() {
               </div>
               <div className="md:w-1/2">
                 <img
-                  src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800&q=80"
-                  alt="Nhà lãnh đạo tôn giáo đang giảng dạy"
-                  className="rounded-2xl shadow-lg w-full max-w-lg mx-auto"
+                  src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=90"
+                  alt="Vũ trụ đời đời"
+                  className="rounded-2xl shadow-lg w-full max-w-lg mx-auto transform hover:scale-[1.02] transition-all duration-500 ring-2 ring-purple-200 ring-opacity-50"
                 />
               </div>
             </div>
@@ -150,7 +150,7 @@ export default function LandingPage() {
         </section>
 
         {/* Features section */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-gradient-to-br from-white to-slate-50">
           <div className="max-w-[1200px] mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
@@ -164,9 +164,9 @@ export default function LandingPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200">
-                <div className="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                  <BarChart2 className="h-6 w-6 text-blue-600" />
+              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-indigo-100 hover:shadow-md hover:border-indigo-200 transition-all duration-300">
+                <div className="h-12 w-12 bg-gradient-to-br from-indigo-100 to-violet-100 rounded-full flex items-center justify-center mb-4 shadow-inner">
+                  <BarChart2 className="h-6 w-6 text-indigo-600" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3 text-gray-900">
                   Theo Dõi Tiến Độ
@@ -177,9 +177,9 @@ export default function LandingPage() {
                 </p>
               </div>
 
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200">
-                <div className="h-12 w-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                  <FileText className="h-6 w-6 text-green-600" />
+              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-indigo-100 hover:shadow-md hover:border-indigo-200 transition-all duration-300">
+                <div className="h-12 w-12 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-full flex items-center justify-center mb-4 shadow-inner">
+                  <FileText className="h-6 w-6 text-emerald-600" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3 text-gray-900">
                   Tự Đánh Giá
@@ -190,8 +190,8 @@ export default function LandingPage() {
                 </p>
               </div>
 
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200">
-                <div className="h-12 w-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-indigo-100 hover:shadow-md hover:border-indigo-200 transition-all duration-300">
+                <div className="h-12 w-12 bg-gradient-to-br from-purple-100 to-fuchsia-100 rounded-full flex items-center justify-center mb-4 shadow-inner">
                   <Calendar className="h-6 w-6 text-purple-600" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3 text-gray-900">
@@ -203,9 +203,9 @@ export default function LandingPage() {
                 </p>
               </div>
 
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200">
-                <div className="h-12 w-12 bg-orange-100 rounded-full flex items-center justify-center mb-4">
-                  <BookMarked className="h-6 w-6 text-orange-600" />
+              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-indigo-100 hover:shadow-md hover:border-indigo-200 transition-all duration-300">
+                <div className="h-12 w-12 bg-gradient-to-br from-amber-100 to-orange-100 rounded-full flex items-center justify-center mb-4 shadow-inner">
+                  <BookMarked className="h-6 w-6 text-amber-600" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3 text-gray-900">
                   Nộp Báo Cáo
@@ -220,7 +220,7 @@ export default function LandingPage() {
         </section>
 
         {/* Resource Library Section */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-20 bg-gradient-to-br from-slate-50 to-indigo-50">
           <div className="max-w-[1200px] mx-auto px-4">
             <div className="flex flex-col md:flex-row items-center">
               <div className="md:w-1/2 mb-10 md:mb-0 md:pr-10">
@@ -298,15 +298,15 @@ export default function LandingPage() {
                 </ul>
                 <div className="mt-8">
                   <Link to="/signup">
-                    <Button className="rounded-lg bg-blue-600 text-white hover:bg-blue-700 px-6 py-2.5 text-base font-medium">
-                      Khám Phá Tài Nguyên
+                    <Button className="rounded-lg bg-gradient-to-r from-indigo-600 to-violet-600 text-white hover:from-indigo-700 hover:to-violet-700 px-6 py-2.5 text-base font-medium shadow-lg hover:shadow-xl transition-all duration-300">
+                      Khám Phá Vũ Trụ Đời Đời
                     </Button>
                   </Link>
                 </div>
               </div>
               <div className="md:w-1/2 grid grid-cols-2 gap-4">
-                <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
-                  <BookOpen className="h-8 w-8 text-blue-600 mb-3" />
+                <div className="bg-white/80 backdrop-blur-sm p-5 rounded-xl shadow-sm border border-indigo-200 hover:shadow-md hover:border-indigo-300 transition-all duration-300">
+                  <BookOpen className="h-8 w-8 text-indigo-600 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">
                     Tài Liệu Kinh Thánh
                   </h3>
@@ -315,15 +315,15 @@ export default function LandingPage() {
                     có tổ chức
                   </p>
                 </div>
-                <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
-                  <FileText className="h-8 w-8 text-green-600 mb-3" />
+                <div className="bg-white/80 backdrop-blur-sm p-5 rounded-xl shadow-sm border border-indigo-200 hover:shadow-md hover:border-indigo-300 transition-all duration-300">
+                  <FileText className="h-8 w-8 text-emerald-600 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">Mẫu Giảng Dạy</h3>
                   <p className="text-gray-600 text-sm">
                     Mẫu sẵn sàng sử dụng cho nhiều bối cảnh giảng dạy khác nhau
                   </p>
                 </div>
-                <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
-                  <Video className="h-8 w-8 text-purple-600 mb-3" />
+                <div className="bg-white/80 backdrop-blur-sm p-5 rounded-xl shadow-sm border border-indigo-200 hover:shadow-md hover:border-indigo-300 transition-all duration-300">
+                  <Video className="h-8 w-8 text-violet-600 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">
                     Tài Nguyên Video
                   </h3>
@@ -331,8 +331,8 @@ export default function LandingPage() {
                     Xem và tải lên video hướng dẫn và bài giảng
                   </p>
                 </div>
-                <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
-                  <MessageCircle className="h-8 w-8 text-orange-600 mb-3" />
+                <div className="bg-white/80 backdrop-blur-sm p-5 rounded-xl shadow-sm border border-indigo-200 hover:shadow-md hover:border-indigo-300 transition-all duration-300">
+                  <MessageCircle className="h-8 w-8 text-amber-600 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">
                     Chia Sẻ Cộng Đồng
                   </h3>
@@ -346,7 +346,7 @@ export default function LandingPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-blue-600 text-white">
+        <section className="py-16 bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 text-white">
           <div className="max-w-[1200px] mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Sẵn Sàng Nâng Cao Mục Vụ Của Anh Chị Em?
@@ -357,14 +357,14 @@ export default function LandingPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/signup">
-                <Button className="w-full sm:w-auto rounded-lg bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 text-base font-medium">
+                <Button className="w-full sm:w-auto rounded-lg bg-white text-indigo-600 hover:bg-gray-100 px-8 py-3 text-base font-medium shadow-lg hover:shadow-xl transition-all duration-300">
                   Bắt Đầu
                 </Button>
               </Link>
               <Link to="/">
                 <Button
                   variant="outline"
-                  className="w-full sm:w-auto rounded-lg border-white text-white hover:bg-blue-700 px-8 py-3 text-base font-medium"
+                  className="w-full sm:w-auto rounded-lg border-white text-white hover:bg-indigo-700/30 px-8 py-3 text-base font-medium backdrop-blur-sm"
                 >
                   Tìm Hiểu Thêm
                 </Button>
@@ -375,7 +375,7 @@ export default function LandingPage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      <footer className="bg-gradient-to-br from-gray-900 to-indigo-950 text-white py-12">
         <div className="max-w-[1200px] mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>

@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
-  
+
   // Function to trigger loading state for demonstration
   const handleRefresh = () => {
     setLoading(true);
@@ -19,24 +19,28 @@ const Home = () => {
     }, 2000);
   };
   return (
-    <div className="min-h-screen bg-[#f5f5f7]">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-indigo-50">
       <TopNavigation />
       <div className="flex h-[calc(100vh-64px)] mt-16">
         <Sidebar />
         <main className="flex-1 overflow-auto">
           <div className="container mx-auto px-6 pt-4 pb-2 flex justify-end">
-            <Button 
-              onClick={handleRefresh} 
+            <Button
+              onClick={handleRefresh}
               className="bg-blue-500 hover:bg-blue-600 text-white rounded-full px-4 h-9 shadow-sm transition-colors flex items-center gap-2"
             >
-              <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+              <RefreshCw
+                className={`h-4 w-4 ${loading ? "animate-spin" : ""}`}
+              />
               {loading ? "Loading..." : "Refresh Dashboard"}
             </Button>
           </div>
-          <div className={cn(
-            "container mx-auto p-6 space-y-8",
-            "transition-all duration-300 ease-in-out"
-          )}>
+          <div
+            className={cn(
+              "container mx-auto p-6 space-y-8",
+              "transition-all duration-300 ease-in-out",
+            )}
+          >
             <DashboardGrid isLoading={loading} />
             <TaskBoard isLoading={loading} />
           </div>

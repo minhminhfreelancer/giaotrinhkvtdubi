@@ -40,6 +40,7 @@ const defaultNavItems: NavItem[] = [
   { icon: <Calendar size={20} />, label: "Lịch trình", href: "/schedule" },
   { icon: <FolderKanban size={20} />, label: "Báo cáo", href: "/reports" },
   { icon: <Users size={20} />, label: "Tài nguyên", href: "/resources" },
+  { icon: <BookOpen size={20} />, label: "Giáo huấn", href: "/teachings" },
 ];
 
 const defaultBottomItems: NavItem[] = [
