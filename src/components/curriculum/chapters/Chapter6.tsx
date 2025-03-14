@@ -152,7 +152,7 @@ export default function Chapter6({
       <CardContent className="space-y-6">
         <div className="border border-gray-200 rounded-lg p-4">
           <h3 className="font-medium text-gray-900 mb-4">1. Đọc giảng đạo</h3>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4 mb-4">
             <div className="space-y-2">
               <Label className="text-sm font-medium">Sách</Label>
               <Input
@@ -170,6 +170,25 @@ export default function Chapter6({
               />
             </div>
           </div>
+
+          <div className="space-y-4">
+            {getSermonChaptersByMonth(month)
+              .split(",")
+              .map((chapter, index) => {
+                const chapterNumber = chapter.trim().replace("Chương ", "");
+                return (
+                  <div key={index} className="space-y-2">
+                    <Label className="text-sm font-medium">
+                      Chương {chapterNumber}
+                    </Label>
+                    <Textarea
+                      className="min-h-[80px] border-gray-300 rounded-lg"
+                      placeholder={`Nhập hương khí của anh chị em về ${chapterNumber}...`}
+                    />
+                  </div>
+                );
+              })}
+          </div>
         </div>
 
         <div className="border border-gray-200 rounded-lg p-4">
@@ -185,7 +204,7 @@ export default function Chapter6({
                 value={sermonBookReflection1}
                 onChange={(e) => setSermonBookReflection1(e.target.value)}
                 className="min-h-[100px] border-gray-300 rounded-lg"
-                placeholder="Nhập cảm nhận của anh chị em..."
+                placeholder="Nhập hương khí của anh chị em..."
               />
             </div>
             <div className="space-y-2">
@@ -196,7 +215,7 @@ export default function Chapter6({
                 value={sermonBookReflection2}
                 onChange={(e) => setSermonBookReflection2(e.target.value)}
                 className="min-h-[100px] border-gray-300 rounded-lg"
-                placeholder="Nhập cảm nhận của anh chị em..."
+                placeholder="Nhập hương khí của anh chị em..."
               />
             </div>
             <div className="space-y-2">
@@ -207,7 +226,7 @@ export default function Chapter6({
                 value={sermonBookReflection3}
                 onChange={(e) => setSermonBookReflection3(e.target.value)}
                 className="min-h-[100px] border-gray-300 rounded-lg"
-                placeholder="Nhập cảm nhận của anh chị em..."
+                placeholder="Nhập hương khí của anh chị em..."
               />
             </div>
             <div className="space-y-2">
@@ -218,7 +237,7 @@ export default function Chapter6({
                 value={sermonBookReflection4}
                 onChange={(e) => setSermonBookReflection4(e.target.value)}
                 className="min-h-[100px] border-gray-300 rounded-lg"
-                placeholder="Nhập cảm nhận của anh chị em..."
+                placeholder="Nhập hương khí của anh chị em..."
               />
             </div>
           </div>

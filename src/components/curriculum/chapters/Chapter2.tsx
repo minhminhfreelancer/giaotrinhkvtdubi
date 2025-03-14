@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Clock } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface WeeklySchedule {
   day: string;
@@ -138,34 +145,25 @@ function WeekSchedule({
           <div className="flex items-center gap-4 mb-4">
             <div className="w-1/2">
               <Label className="text-sm font-medium mb-2">Giờ thức dậy</Label>
-              <Input
-                type="time"
+              <TimePicker
                 value={day.wakeUpTime}
-                onChange={(e) =>
+                onChange={(value) =>
                   handleWeeklyScheduleChange(
                     weekKey,
                     index,
                     "wakeUpTime",
-                    e.target.value,
+                    value,
                   )
                 }
-                className="w-full"
               />
             </div>
             <div className="w-1/2">
               <Label className="text-sm font-medium mb-2">Giờ đi ngủ</Label>
-              <Input
-                type="time"
+              <TimePicker
                 value={day.bedTime}
-                onChange={(e) =>
-                  handleWeeklyScheduleChange(
-                    weekKey,
-                    index,
-                    "bedTime",
-                    e.target.value,
-                  )
+                onChange={(value) =>
+                  handleWeeklyScheduleChange(weekKey, index, "bedTime", value)
                 }
-                className="w-full"
               />
             </div>
           </div>
@@ -173,15 +171,14 @@ function WeekSchedule({
             <div className="space-y-2">
               <Label className="text-sm font-medium">Sáng (AM)</Label>
               <div className="flex gap-2">
-                <Input
-                  type="time"
+                <TimePicker
                   value={day.morningTime}
-                  onChange={(e) =>
+                  onChange={(value) =>
                     handleWeeklyScheduleChange(
                       weekKey,
                       index,
                       "morningTime",
-                      e.target.value,
+                      value,
                     )
                   }
                   className="w-1/4"
@@ -204,15 +201,14 @@ function WeekSchedule({
             <div className="space-y-2">
               <Label className="text-sm font-medium">Chiều (PM)</Label>
               <div className="flex gap-2">
-                <Input
-                  type="time"
+                <TimePicker
                   value={day.afternoonTime}
-                  onChange={(e) =>
+                  onChange={(value) =>
                     handleWeeklyScheduleChange(
                       weekKey,
                       index,
                       "afternoonTime",
-                      e.target.value,
+                      value,
                     )
                   }
                   className="w-1/4"
@@ -235,15 +231,14 @@ function WeekSchedule({
             <div className="space-y-2">
               <Label className="text-sm font-medium">Tối</Label>
               <div className="flex gap-2">
-                <Input
-                  type="time"
+                <TimePicker
                   value={day.eveningTime}
-                  onChange={(e) =>
+                  onChange={(value) =>
                     handleWeeklyScheduleChange(
                       weekKey,
                       index,
                       "eveningTime",
-                      e.target.value,
+                      value,
                     )
                   }
                   className="w-1/4"
@@ -267,5 +262,114 @@ function WeekSchedule({
         </div>
       ))}
     </div>
+  );
+}
+
+interface TimePickerProps {
+  value: string;
+  onChange: (value: string) => void;
+  className?: string;
+}
+
+function TimePicker({ value, onChange, className }: TimePickerProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Format time for display
+  const formatTimeForDisplay = (timeString: string) => {
+    if (!timeString) return "Chọn giờ";
+
+    try {
+      const [hours, minutes] = timeString.split(":");
+      return `${hours}:${minutes}`;
+    } catch (e) {
+      return timeString;
+    }
+  };
+
+  // Generate hours and minutes options
+  const hours = Array.from({ length: 24 }, (_, i) =>
+    i.toString().padStart(2, "0"),
+  );
+  const minutes = Array.from({ length: 60 }, (_, i) =>
+    i.toString().padStart(2, "0"),
+  );
+
+  // Handle time selection
+  const handleTimeSelection = (
+    type: "hour" | "minute",
+    selectedValue: string,
+  ) => {
+    const [currentHour, currentMinute] = value
+      ? value.split(":")
+      : ["00", "00"];
+
+    if (type === "hour") {
+      onChange(`${selectedValue}:${currentMinute || "00"}`);
+    } else {
+      onChange(`${currentHour || "00"}:${selectedValue}`);
+    }
+  };
+
+  return (
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
+      <PopoverTrigger asChild>
+        <Button
+          variant="outline"
+          className={cn(
+            "w-full justify-start text-left font-normal h-9 text-sm",
+            !value && "text-muted-foreground",
+            className,
+          )}
+          onClick={() => setIsOpen(true)}
+        >
+          <Clock className="mr-2 h-3 w-3" />
+          {formatTimeForDisplay(value)}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-auto p-0" align="start">
+        <div className="p-3 flex gap-3">
+          <div className="space-y-1">
+            <p className="text-xs font-medium">Giờ</p>
+            <div className="h-[150px] overflow-y-auto pr-1 w-16">
+              {hours.map((hour) => (
+                <Button
+                  key={hour}
+                  variant="ghost"
+                  size="sm"
+                  className={cn(
+                    "w-full justify-start text-left mb-1 h-7 text-xs px-2",
+                    value?.startsWith(hour + ":") &&
+                      "bg-blue-100 text-blue-600",
+                  )}
+                  onClick={() => handleTimeSelection("hour", hour)}
+                >
+                  {hour}
+                </Button>
+              ))}
+            </div>
+          </div>
+          <div className="space-y-1">
+            <p className="text-xs font-medium">Phút</p>
+            <div className="h-[150px] overflow-y-auto pr-1 w-16">
+              {minutes.map((minute) => (
+                <Button
+                  key={minute}
+                  variant="ghost"
+                  size="sm"
+                  className={cn(
+                    "w-full justify-start text-left mb-1 h-7 text-xs px-2",
+                    value?.endsWith(":" + minute) &&
+                      "bg-blue-100 text-blue-600",
+                  )}
+                  onClick={() => handleTimeSelection("minute", minute)}
+                >
+                  {minute}
+                </Button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </PopoverContent>
+    </Popover>
   );
 }

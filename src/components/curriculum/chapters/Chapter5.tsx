@@ -2,6 +2,16 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { format } from "date-fns";
+import { vi } from "date-fns/locale";
+import { CalendarIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 // Helper functions to get content based on month
 const getStageByMonth = (month: number): string => {
@@ -9,7 +19,7 @@ const getStageByMonth = (month: number): string => {
     case 1:
       return "Giai đoạn 1";
     case 2:
-      return "Giai đoạn 1";
+      return "Giai đoạn 1, Giai đoạn 2";
     case 3:
       return "Giai đoạn 2";
     case 4:
@@ -28,7 +38,7 @@ const getChapterRangeByMonth = (month: number): string => {
     case 1:
       return "Chương 1,2,3,4,5,6,7,8 (GĐ1)";
     case 2:
-      return "Chương 9,10,11,12,13,14,15,16 (GĐ1)";
+      return "Chương 9,10 (GĐ1) --> Chương 1,2,3,4,5,6 (GĐ2)";
     case 3:
       return "Chương 1,2,3,4,5,6,7,8 (GĐ2)";
     case 4:
@@ -85,6 +95,10 @@ interface Chapter5Props {
 }
 
 export default function Chapter5({ month }: Chapter5Props) {
+  const [dates, setDates] = React.useState<{ [key: string]: Date | undefined }>(
+    {},
+  );
+
   return (
     <Card>
       <CardHeader>
@@ -134,7 +148,7 @@ export default function Chapter5({ month }: Chapter5Props) {
                     Chủ đề
                   </th>
                   <th className="border border-gray-300 px-4 py-2 text-left">
-                    Phân Loại
+                    Ngày tháng
                   </th>
                   <th className="border border-gray-300 px-4 py-2 text-left">
                     Người chấm thi
@@ -142,23 +156,33 @@ export default function Chapter5({ month }: Chapter5Props) {
                 </tr>
               </thead>
               <tbody>
-                {Array.from({ length: 8 }).map((_, index) => (
+                {[
+                  { id: "1-9", index: 0 },
+                  { id: "1-10", index: 1 },
+                  { id: "2-1", index: 2 },
+                  { id: "2-2", index: 3 },
+                  { id: "2-3", index: 4 },
+                  { id: "2-4", index: 5 },
+                  { id: "2-5", index: 6 },
+                  { id: "2-6", index: 7 },
+                ].map((item) => (
                   <tr
-                    key={index}
-                    className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                    key={item.index}
+                    className={item.index % 2 === 0 ? "bg-white" : "bg-gray-50"}
                   >
-                    <td className="border border-gray-300 px-4 py-2">{`1-${index + 1}`}</td>
                     <td className="border border-gray-300 px-4 py-2">
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm">Chữ ký:</span>
-                          <Input className="h-8" />
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm">Ngày Tháng:</span>
-                          <Input className="h-8" />
-                        </div>
-                      </div>
+                      {item.id}
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      <DatePicker
+                        date={dates[`topic-${item.id}`]}
+                        setDate={(date) => {
+                          setDates((prev) => ({
+                            ...prev,
+                            [`topic-${item.id}`]: date,
+                          }));
+                        }}
+                      />
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
                       <Input className="h-8" placeholder="Người chấm thi" />
@@ -206,7 +230,7 @@ export default function Chapter5({ month }: Chapter5Props) {
                     Chủ đề
                   </th>
                   <th className="border border-gray-300 px-4 py-2 text-left">
-                    Phân Loại
+                    Ngày tháng
                   </th>
                   <th className="border border-gray-300 px-4 py-2 text-left">
                     Người chấm thi
@@ -214,23 +238,28 @@ export default function Chapter5({ month }: Chapter5Props) {
                 </tr>
               </thead>
               <tbody>
-                {Array.from({ length: 3 }).map((_, index) => (
+                {[
+                  { id: "6-4", index: 0 },
+                  { id: "6-5", index: 1 },
+                  { id: "6-6", index: 2 },
+                ].map((item) => (
                   <tr
-                    key={index}
-                    className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                    key={item.index}
+                    className={item.index % 2 === 0 ? "bg-white" : "bg-gray-50"}
                   >
-                    <td className="border border-gray-300 px-4 py-2">{`6-${index + 1}`}</td>
                     <td className="border border-gray-300 px-4 py-2">
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm">Chữ ký:</span>
-                          <Input className="h-8" />
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm">Ngày Tháng:</span>
-                          <Input className="h-8" />
-                        </div>
-                      </div>
+                      {item.id}
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      <DatePicker
+                        date={dates[`doctrine-${item.id}`]}
+                        setDate={(date) => {
+                          setDates((prev) => ({
+                            ...prev,
+                            [`doctrine-${item.id}`]: date,
+                          }));
+                        }}
+                      />
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
                       <Input className="h-8" placeholder="Người chấm thi" />
@@ -244,6 +273,43 @@ export default function Chapter5({ month }: Chapter5Props) {
         {/* Save button removed - using main save button instead */}
       </CardContent>
     </Card>
+  );
+}
+
+interface DatePickerProps {
+  date: Date | undefined;
+  setDate: (date: Date | undefined) => void;
+}
+
+function DatePicker({ date, setDate }: DatePickerProps) {
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button
+          variant={"outline"}
+          className={cn(
+            "w-full justify-start text-left font-normal h-8",
+            !date && "text-muted-foreground",
+          )}
+        >
+          <CalendarIcon className="mr-2 h-4 w-4" />
+          {date ? (
+            format(date, "dd/MM/yyyy", { locale: vi })
+          ) : (
+            <span>Chọn ngày</span>
+          )}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-auto p-0" align="start">
+        <Calendar
+          mode="single"
+          selected={date}
+          onSelect={setDate}
+          initialFocus
+          locale={vi}
+        />
+      </PopoverContent>
+    </Popover>
   );
 }
 
