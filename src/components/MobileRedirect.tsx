@@ -34,6 +34,13 @@ export default function MobileRedirect({
   }, [mobileUrl]);
 
   const handleRedirect = () => {
+    // Store auth state in localStorage before redirecting
+    const authToken = localStorage.getItem("supabase.auth.token");
+    if (authToken) {
+      // Save the token with a special key for mobile
+      localStorage.setItem("mobile.auth.token", authToken);
+    }
+
     window.location.href = mobileUrl + "/dashboard";
   };
 

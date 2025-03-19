@@ -28,16 +28,25 @@ export default function MobileLogin() {
     }
   }, []);
 
-  // Disable automatic desktop redirection on this page
+  // Force staying on mobile version
   useEffect(() => {
-    // This will prevent the automatic redirection that might be happening elsewhere
-    const originalRedirect = window.location.href;
-    return () => {
-      // Restore the original behavior when component unmounts
-      if (window.location.href !== originalRedirect) {
-        window.location.href = originalRedirect;
+    // Ensure we're on the mobile path
+    if (!window.location.pathname.startsWith("/mobile")) {
+      window.location.href = "/mobile/login";
+    }
+
+    // Prevent any navigation away from mobile
+    const preventRedirection = () => {
+      const currentPath = window.location.pathname;
+      if (!currentPath.startsWith("/mobile")) {
+        window.location.href = "/mobile/login";
       }
     };
+
+    // Check frequently
+    const intervalId = setInterval(preventRedirection, 100);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -56,8 +65,8 @@ export default function MobileLogin() {
 
       // Delay navigation for animation, but stay in mobile version
       setTimeout(() => {
-        // Explicitly navigate to mobile dashboard, not desktop
-        navigate("/mobile/dashboard");
+        // Explicitly navigate to mobile dashboard with full path
+        window.location.href = "/mobile/dashboard";
       }, 500);
     } catch (error) {
       setError("Email hoặc mật khẩu không hợp lệ");

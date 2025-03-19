@@ -100,6 +100,46 @@ function AnimatedRoutes() {
 }
 
 function MobileApp() {
+  // Force staying in mobile version
+  useEffect(() => {
+    // Ensure all navigation stays within mobile paths
+    const originalPushState = history.pushState;
+    const originalReplaceState = history.replaceState;
+
+    history.pushState = function (...args) {
+      // Check if we're trying to navigate away from mobile
+      if (
+        args[2] &&
+        typeof args[2] === "string" &&
+        !args[2].includes("/mobile")
+      ) {
+        // Modify the URL to keep it in mobile
+        args[2] =
+          "/mobile" + (args[2].startsWith("/") ? args[2] : "/" + args[2]);
+      }
+      return originalPushState.apply(this, args);
+    };
+
+    history.replaceState = function (...args) {
+      // Check if we're trying to navigate away from mobile
+      if (
+        args[2] &&
+        typeof args[2] === "string" &&
+        !args[2].includes("/mobile")
+      ) {
+        // Modify the URL to keep it in mobile
+        args[2] =
+          "/mobile" + (args[2].startsWith("/") ? args[2] : "/" + args[2]);
+      }
+      return originalReplaceState.apply(this, args);
+    };
+
+    return () => {
+      // Restore original functions when component unmounts
+      history.pushState = originalPushState;
+      history.replaceState = originalReplaceState;
+    };
+  }, []);
   // Add mobile app enhancements
   useEffect(() => {
     // These meta tags are now in the HTML file, but we'll add additional behaviors here
