@@ -80,7 +80,12 @@ export function redirectToDesktopVersionIfNeeded(
   if (
     skipAuthPages &&
     (window.location.pathname.includes("/login") ||
-      window.location.pathname.includes("/signup"))
+      window.location.pathname.includes("/signup") ||
+      window.location.pathname.includes("/dashboard") ||
+      window.location.pathname.includes("/progress") ||
+      window.location.pathname.includes("/curriculum") ||
+      window.location.pathname.includes("/teachings") ||
+      window.location.pathname.includes("/account"))
   ) {
     return;
   }

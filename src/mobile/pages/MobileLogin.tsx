@@ -57,7 +57,7 @@ export default function MobileLogin() {
       // Delay navigation for animation, but stay in mobile version
       setTimeout(() => {
         // Explicitly navigate to mobile dashboard, not desktop
-        navigate("/dashboard");
+        navigate("/mobile/dashboard");
       }, 500);
     } catch (error) {
       setError("Email hoặc mật khẩu không hợp lệ");

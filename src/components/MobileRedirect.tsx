@@ -34,7 +34,7 @@ export default function MobileRedirect({
   }, [mobileUrl]);
 
   const handleRedirect = () => {
-    window.location.href = mobileUrl;
+    window.location.href = mobileUrl + "/dashboard";
   };
 
   const handleDismiss = () => {
