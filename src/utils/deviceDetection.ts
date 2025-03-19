@@ -66,13 +66,24 @@ export function redirectToMobileVersionIfNeeded(
  * Redirects to desktop version if on a desktop device
  * @param {string} desktopUrl - The URL to redirect to for desktop devices
  * @param {boolean} forceRedirect - Whether to force redirect regardless of current URL
+ * @param {boolean} skipAuthPages - Whether to skip redirection on auth pages (login, signup)
  */
 export function redirectToDesktopVersionIfNeeded(
   desktopUrl: string = "/",
   forceRedirect: boolean = false,
+  skipAuthPages: boolean = true,
 ): void {
   // Skip if we're already on a non-mobile URL path
   if (!forceRedirect && !window.location.pathname.startsWith("/mobile")) return;
+
+  // Skip redirection on auth pages if skipAuthPages is true
+  if (
+    skipAuthPages &&
+    (window.location.pathname.includes("/login") ||
+      window.location.pathname.includes("/signup"))
+  ) {
+    return;
+  }
 
   // Only redirect if we're not on a mobile device
   if (!isMobileDevice()) {

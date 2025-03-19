@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useNavigate, Link } from "react-router-dom";
 import { LogIn, Eye, EyeOff } from "lucide-react";
+import { redirectToDesktopVersionIfNeeded } from "@/utils/deviceDetection";
 
 export default function MobileLogin() {
   const [email, setEmail] = useState("");
@@ -27,6 +28,18 @@ export default function MobileLogin() {
     }
   }, []);
 
+  // Disable automatic desktop redirection on this page
+  useEffect(() => {
+    // This will prevent the automatic redirection that might be happening elsewhere
+    const originalRedirect = window.location.href;
+    return () => {
+      // Restore the original behavior when component unmounts
+      if (window.location.href !== originalRedirect) {
+        window.location.href = originalRedirect;
+      }
+    };
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -41,8 +54,9 @@ export default function MobileLogin() {
         navigator.vibrate([15, 30, 15]);
       }
 
-      // Delay navigation for animation
+      // Delay navigation for animation, but stay in mobile version
       setTimeout(() => {
+        // Explicitly navigate to mobile dashboard, not desktop
         navigate("/dashboard");
       }, 500);
     } catch (error) {
